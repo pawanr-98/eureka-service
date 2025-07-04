@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ums-eureka
+  namespace: ums-prod
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: ums-eureka
+  template:
+    metadata:
+      labels:
+        app: ums-eureka
+    spec:
+      imagePullSecret:
+        - name: regcred
+      containers:
+        - name: ums-eureka
+          image: pdock855/dr-front:placeholder
+          imagePullPolicy: Always
+          ports:
+            containerPort: 8761
+      nodeSelector:
+        env: 'prod'
