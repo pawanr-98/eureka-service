@@ -20,6 +20,6 @@ spec:
           image: pdock855/dr-front:placeholder
           imagePullPolicy: Always
           ports:
-            containerPort: 8761
+            - containerPort: 8761
       nodeSelector:
         env: 'prod'
