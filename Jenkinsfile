@@ -45,8 +45,8 @@ pipeline {
                     withCredentials([string(credentialsId: 'ums-cluster', variable: 'CLUSTER_CONTEXT')]) {
                         sh """
                         kubectl config use-context $CLUSTER_CONTEXT
-                        kubectl apply -f deployment.yaml -n ${namespace}
-                        kubectl apply -f service.yaml -n ${namespace}
+                        kubectl apply -f k8s-manifests/deployment.yaml -n ${namespace}
+                        kubectl apply -f k8s-manifests/service.yaml -n ${namespace}
                         kubectl set image deployment/ums-eureka ums-eureka=$DOCKER_IMAGE -n ${namespace}
                         """
                     }
