@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  - name: eureka-service
+    namespace: ums-prod
+spec:
+  selector:
+    app: ums-eureka
+  ports:
+    - protocol: TCP
+      port: 8761
+      targetPort: 8761
+  type: LoadBalancer
+
