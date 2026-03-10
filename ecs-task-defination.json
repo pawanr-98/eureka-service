@@ -1,0 +1,46 @@
+{
+    "family": "prod-api-gateway-service",
+    "containerDefinitions": [
+        {
+            "name": "api-gateway-service",
+            "image": "017820683143.dkr.ecr.us-east-1.amazonaws.com/api-gateway-service",
+            "cpu": 0,
+            "portMappings": [
+                {
+                    "containerPort": 8443,
+                    "hostPort": 8443,
+                    "protocol": "tcp"
+                }
+            ],
+            "essential": true,
+            "environment": [],
+            "mountPoints": [],
+            "volumesFrom": [],
+            "secrets": [
+                {
+                    "name": "DB_PASSWORD",
+                    "valueFrom": "arn:aws:secretsmanager:us-east-1:017820683143:secret:prod-db-secret-c8b802ac-kEfjJx"
+                }
+            ],
+            "logConfiguration": {
+                "logDriver": "awslogs",
+                "options": {
+                    "awslogs-group": "/ecs/prod",
+                    "awslogs-region": "us-east-1",
+                    "awslogs-stream-prefix": "api-gateway-service"
+                }
+            },
+            "systemControls": []
+        }
+    ],
+    "taskRoleArn": "arn:aws:iam::017820683143:role/prod-ecs-task-role",
+    "executionRoleArn": "arn:aws:iam::017820683143:role/prod-ecs-execution-role",
+    "networkMode": "awsvpc",
+    "volumes": [],
+    "placementConstraints": [],
+    "requiresCompatibilities": [
+        "FARGATE"
+    ],
+    "cpu": "512",
+    "memory": "1024"
+}
