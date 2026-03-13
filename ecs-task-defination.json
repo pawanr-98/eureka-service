@@ -8,7 +8,7 @@
             "portMappings": [
                 {
                     "name": "api-gateway-80-tcp",
-                    "containerPort": 8761,
+                    "containerPort": 80,
                     "hostPort": 80,
                     "protocol": "tcp",
                     "appProtocol": "http"
