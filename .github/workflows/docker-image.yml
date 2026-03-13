@@ -49,6 +49,6 @@ jobs:
       uses: aws-actions/amazon-ecs-deploy-task-definition@v1
       with:
         task-definition: ecs-task-defination.json
-        service: ${{ secrets.ECS_SERVICE }}
+        service: api-gateway-td-service-1
         cluster: test-01
         wait-for-service-stability: true
