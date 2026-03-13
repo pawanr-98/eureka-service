@@ -1,46 +1,50 @@
 {
-    "family": "prod-api-gateway-service",
+    "family": "api-gateway-td",
     "containerDefinitions": [
         {
-            "name": "api-gateway-service",
-            "image": "017820683143.dkr.ecr.us-east-1.amazonaws.com/api-gateway-service",
+            "name": "api-gateway",
+            "image": "017820683143.dkr.ecr.us-east-1.amazonaws.com/test-01@sha256:2a832073e8d988732942930509532e4612ee0b897b8c1404df8e7cfc15c46a8b",
             "cpu": 0,
             "portMappings": [
                 {
-                    "containerPort": 8443,
-                    "hostPort": 8443,
-                    "protocol": "tcp"
+                    "name": "api-gateway-80-tcp",
+                    "containerPort": 80,
+                    "hostPort": 80,
+                    "protocol": "tcp",
+                    "appProtocol": "http"
                 }
             ],
             "essential": true,
             "environment": [],
+            "environmentFiles": [],
             "mountPoints": [],
             "volumesFrom": [],
-            "secrets": [
-                {
-                    "name": "DB_PASSWORD",
-                    "valueFrom": "arn:aws:secretsmanager:us-east-1:017820683143:secret:prod-db-secret-c8b802ac-kEfjJx"
-                }
-            ],
+            "ulimits": [],
             "logConfiguration": {
                 "logDriver": "awslogs",
                 "options": {
-                    "awslogs-group": "/ecs/prod",
+                    "awslogs-group": "/ecs/api-gateway-td",
+                    "awslogs-create-group": "true",
                     "awslogs-region": "us-east-1",
-                    "awslogs-stream-prefix": "api-gateway-service"
-                }
+                    "awslogs-stream-prefix": "ecs"
+                },
+                "secretOptions": []
             },
             "systemControls": []
         }
     ],
-    "taskRoleArn": "arn:aws:iam::017820683143:role/prod-ecs-task-role",
-    "executionRoleArn": "arn:aws:iam::017820683143:role/prod-ecs-execution-role",
+    "executionRoleArn": "arn:aws:iam::017820683143:role/ecsTaskExecutionRole",
     "networkMode": "awsvpc",
     "volumes": [],
     "placementConstraints": [],
     "requiresCompatibilities": [
         "FARGATE"
     ],
-    "cpu": "512",
-    "memory": "1024"
+    "cpu": "256",
+    "memory": "1024",
+    "runtimePlatform": {
+        "cpuArchitecture": "X86_64",
+        "operatingSystemFamily": "LINUX"
+    },
+    "enableFaultInjection": false
 }
