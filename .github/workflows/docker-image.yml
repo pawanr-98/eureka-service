@@ -50,5 +50,5 @@ jobs:
       with:
         task-definition: ecs-task-defination.json
         service: ${{ secrets.ECS_SERVICE }}
-        cluster: ${{ secrets.ECS_CLUSTER }}
+        cluster: test-01
         wait-for-service-stability: true
